@@ -1,11 +1,11 @@
-package itau.com.cadastro;
-
+package itau.com.cadastro.Ninja;
+import itau.com.cadastro.Missoes.MissoesModel;
 import jakarta.persistence.*;
 
 // Entity ele transforma uma clss em uma entidade do BD
 @Entity
 @Table(name = "tb_cadastro")
-public class Model {
+public class NinjaModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,11 +14,16 @@ public class Model {
     private String email;
     private int idade;
 
-    public Model(){
+    // @ManyToOne um ninja tem uma unica missao
+    @ManyToOne
+    @JoinColumn(name = "missoes_id") // Foreina Key ou chave estrangeira
+    private MissoesModel missoes;
+
+    public NinjaModel(){
 
     }
 
-    public Model(String nome, String email, int idade){
+    public NinjaModel(String nome, String email, int idade){
         this.nome = nome;
         this.email = email;
         this.idade = idade;
